@@ -24,6 +24,10 @@ public class Employee {
         return lastName;
     }
 
+    public void setFirstName(String firstName) {this.firstName = firstName;}
+
+    public void setLastName(String lastName) {this.lastName = lastName;}
+
     public double getSalary() {
         return salary;
     }
@@ -38,9 +42,6 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
-    }
-    public String getFullName() {
-        return firstName + " " + lastName;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class EmployeeController {
     @GetMapping("add")
     public Employee add(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
                         int department, double salary) {
-        return service.add(firstName, lastName, department, salary);
+        return service.add(new Employee(firstName,lastName,department,salary));
     }
 
     @GetMapping("remove")
