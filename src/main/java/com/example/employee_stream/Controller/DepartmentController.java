@@ -20,12 +20,16 @@ public class DepartmentController {
     }
 
     @GetMapping("/max-salary")
-    public Employee getEmployeeWithMaxSalary(@RequestParam("departmentId")int department){
+    public double getEmployeeWithMaxSalary(@RequestParam("departmentId")int department){
         return departmentService.getEmployeeWithMaxSalary(department);
     }
     @GetMapping("/min-salary")
-    public Employee getEmployeeWithMinSalary(@RequestParam("departmentId")int department){
+    public double getEmployeeWithMinSalary(@RequestParam("departmentId")int department){
         return departmentService.getEmployeeWithMinSalary(department);
+    }
+    @GetMapping("/sum")
+    public double getEmployeeSumSalary(@RequestParam("departmentId")int department) {
+        return departmentService.getEmployeeSumSalary(department);
     }
     @GetMapping(value = "/all", params = "departmentId")
     public List<Employee> getALL(@RequestParam("departmentId") int department){

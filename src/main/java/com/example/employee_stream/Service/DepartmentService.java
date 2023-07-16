@@ -18,24 +18,36 @@ public class DepartmentService {
         this.serviceEmployee = serviceEmployee;
     }
 
-    public Employee getEmployeeWithMaxSalary(int department) {
+    public double getEmployeeWithMaxSalary(int department) {
         return serviceEmployee.getAll().stream()
                 .filter(employee -> employee.getDepartment() == department)
-                .max(Comparator.comparingDouble(Employee::getSalary))
+                .mapToDouble(Employee::getSalary)
+                .max()
                 .orElseThrow(EmployeeNotFoundException::new);
     }
-    public Employee getEmployeeWithMinSalary(int department) {
+
+    public double getEmployeeWithMinSalary(int department) {
         return serviceEmployee.getAll().stream()
                 .filter(employee -> employee.getDepartment() == department)
-                .min(Comparator.comparingDouble(Employee::getSalary))
+                .mapToDouble(Employee::getSalary)
+                .min()
                 .orElseThrow(EmployeeNotFoundException::new);
     }
-    public List<Employee> getAll(int department){
+
+    public double getEmployeeSumSalary(int department) {
         return serviceEmployee.getAll().stream()
-                .filter(employee -> employee.getDepartment()==department)
+                .filter(employee -> employee.getDepartment() == department)
+                .mapToDouble(Employee::getSalary)
+                .sum();
+    }
+
+    public List<Employee> getAll(int department) {
+        return serviceEmployee.getAll().stream()
+                .filter(employee -> employee.getDepartment() == department)
                 .collect(Collectors.toList());
     }
-    public Map<Integer,List<Employee>> getAll(){
+
+    public Map<Integer, List<Employee>> getAll() {
         return serviceEmployee.getAll().stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment));
     }
